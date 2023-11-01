@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./style.css";
+import Header from "./components/Header";
+import Balance from "./components/Balance";
+import Movements from "./components/Movements";
+import Summary from "./components/Summary";
+import Transfers from "./components/Transfers";
+import Loan from "./components/Loan";
+import Close from "./components/Close";
+import LogoutTimer from "./components/LogoutTimer";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <main className="app">
+        {/* BALANCE */}
+        <Balance />
+        {/* MOVEMENTS */}
+        <Movements />
+        {/* SUMMARY */}
+        <Summary />
+        {/* OPERATION: TRANSFERS */}
+        <Transfers />
+        {/* OPERATION: LOAN */}
+        <Loan />
+        {/* OPERATION: CLOSE */}
+        <Close />
+        {/* LOGOUT TIMER */}
+        <LogoutTimer />
+      </main>
+    </>
   );
 }
-
-export default App;
