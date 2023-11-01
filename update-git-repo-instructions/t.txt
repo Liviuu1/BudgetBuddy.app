@@ -30,7 +30,7 @@ To update your local Git repository with the changes your colleague made on the 
    ```
    git merge origin/master
    ```
-
+   
    If there are no conflicts, Git will automatically merge the changes into your local branch. If there are conflicts, you'll need to resolve them manually. Git will guide you through the conflict resolution process.
 
 6. **Test your project:** After merging the changes, it's a good practice to test your project to ensure everything works as expected.
