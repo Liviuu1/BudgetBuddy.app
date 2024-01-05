@@ -5,8 +5,9 @@ import {
   signInWithPopup,
   signOut,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
-import { GoogleLogo, SignOut, SignIn } from "@phosphor-icons/react";
+import { GoogleLogo, SignOut, SignIn, UserPlus } from "@phosphor-icons/react";
 
 function Header() {
   const [email, setEmail] = useState("");
@@ -27,7 +28,7 @@ function Header() {
 
   console.log(user?.email);
 
-  const signIn = async (e) => {
+  const signUp = async (e) => {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -36,6 +37,14 @@ function Header() {
     }
   };
 
+  const signInWithEmail = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
@@ -44,17 +53,28 @@ function Header() {
     }
   };
 
-  const logout = async () => {
+  const logout = async (e) => {
+    e.preventDefault();
     try {
       await signOut(auth);
     } catch (err) {
       console.error(err);
     }
   };
+
+  const handleLogoClick = () => {
+    // Reload the entire page
+    window.location.reload();
+  };
   return (
     <nav>
       <p className="welcome">Log in to get started</p>
-      <img src="/images/logo.png" alt="Logo" className="logo" />
+      <img
+        src="/images/logo.png"
+        alt="Logo"
+        className="logo"
+        onClick={handleLogoClick}
+      />
       <form className="login">
         {!user && (
           <>
@@ -73,8 +93,23 @@ function Header() {
           </>
         )}
         {!user ? (
-          <button type="submit" onClick={signIn} className="login__btn">
+          <button
+            type="submit"
+            onClick={signInWithEmail}
+            className="login__btn"
+            title="Log In With Email and Password"
+          >
             <SignIn size={32} />
+          </button>
+        ) : null}
+        {!user ? (
+          <button
+            type="button"
+            className="login__btn"
+            onClick={signUp}
+            title="Sign Up"
+          >
+            <UserPlus size={32} />
           </button>
         ) : null}
         {!user ? (
@@ -82,12 +117,13 @@ function Header() {
             className="login__btn"
             type="button"
             onClick={signInWithGoogle}
+            title="Sign In With Google"
           >
             <GoogleLogo size={32} />
           </button>
         ) : null}
         {user ? (
-          <button className="login__btn" onClick={logout}>
+          <button className="login__btn" onClick={logout} title="Log Out">
             <SignOut size={32} />
           </button>
         ) : null}

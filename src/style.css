@@ -31,6 +31,7 @@ nav {
 
 .logo {
   height: 5.25rem;
+  cursor: pointer;
 }
 
 .login {
@@ -67,6 +68,7 @@ nav {
   color: inherit;
   cursor: pointer;
   transition: all 0.3s;
+  margin-right: 10px;
 }
 
 .login__btn:hover,
