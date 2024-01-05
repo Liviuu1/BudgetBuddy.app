@@ -88,7 +88,7 @@ nav {
   gap: 2rem;
 
   /* NOTE This creates the fade in/out anumation */
-  opacity: 0;
+  /* opacity: 0; */
   transition: all 1s;
 }
 
@@ -288,4 +288,8 @@ h2 {
 
 .timer {
   font-weight: 600;
+}
+
+.btn {
+  border: none;
 }
