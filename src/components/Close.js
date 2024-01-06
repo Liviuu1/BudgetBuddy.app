@@ -13,7 +13,7 @@ function Close() {
         />
         <button className="form__btn form__btn--close">→</button>
         <label className="form__label">Confirm user</label>
-        <label className="form__label">Confirm PIN</label>
+        <label className="form__label">Confirm Password</label>
       </form>
     </div>
   );

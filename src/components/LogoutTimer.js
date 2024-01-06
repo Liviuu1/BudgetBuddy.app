@@ -32,10 +32,12 @@ function LogoutTimer({ initialTime = 300, onTimeout }) {
   };
 
   return (
-    <p className="logout-timer">
-      You will be logged out in{" "}
-      <span className="timer">{formatTime(time)}</span>
-    </p>
+    <div className="logout-timer-div">
+      <p className="logout-timer">
+        You will be logged out in{" "}
+        <span className="timer">{formatTime(time)}</span>
+      </p>
+    </div>
   );
 }
 

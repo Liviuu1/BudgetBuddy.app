@@ -10,6 +10,7 @@ import LogoutTimer from "./components/LogoutTimer";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "./config/firebase";
+import DepositWithdraw from "./components/DepositWithdraw";
 export default function App() {
   const [user, setUser] = useState(null);
 
@@ -40,6 +41,8 @@ export default function App() {
           <Movements />
           {/* SUMMARY */}
           <Summary />
+          {/* OPERATION: DEPOSIT/WITHDRAW */}
+          <DepositWithdraw />
           {/* OPERATION: TRANSFERS */}
           <Transfers />
           {/* OPERATION: LOAN */}
@@ -47,10 +50,8 @@ export default function App() {
           {/* OPERATION: CLOSE */}
           <Close />
           {/* LOGOUT TIMER */}
-          <div>
-            {/* Your other components */}
-            <LogoutTimer onTimeout={handleTimeout} />
-          </div>
+          {/* Your other components */}
+          <LogoutTimer onTimeout={handleTimeout} />
         </main>
       )}
     </>

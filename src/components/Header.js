@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { GoogleLogo, SignOut, SignIn, UserPlus } from "@phosphor-icons/react";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { Timestamp, collection, doc, getDoc, setDoc } from "firebase/firestore";
 
 function Header() {
   const [email, setEmail] = useState("");
@@ -44,20 +44,35 @@ function Header() {
       // Access the newly created user
       const user = userCredential.user;
 
-      // Define the initial account data for the new user
-      const newAccount = {
-        owner: user.email,
-        currency: "EUR",
-        locale: "pt-PT",
-        movements: {
-          movement1: [new Date().toISOString(), 0],
-        },
-        interestRate: 1.2,
-        // Add other properties as needed (e.g., interestRate)
-      };
+      // Check if the user already exists in the database
+      const userDocRef = doc(accountsCollectionRef, user.uid);
+      const userDocSnap = await getDoc(userDocRef);
 
-      // Add the new account to the "accountsCollection" in Firestore
-      await setDoc(doc(accountsCollectionRef, user.uid), newAccount);
+      if (!userDocSnap.exists()) {
+        // Determine the user's currency based on the browser's language
+        const browserCurrency = new Intl.NumberFormat(undefined, {
+          style: "currency",
+          currency: "EUR", // Default to EUR if unable to determine
+        }).resolvedOptions().currency;
+
+        // Determine the user's locale based on the browser's language
+        const browserLocale = navigator.language;
+
+        // If the user does not exist, add them to the database
+        const newAccount = {
+          owner: user.email,
+          currency: browserCurrency,
+          locale: browserLocale || "en-US", // Default to en-US if unable to determine
+          movements: {
+            movement1: [Timestamp.fromDate(new Date()), 0],
+          },
+          interestRate: 1.2,
+          // Add other properties as needed (e.g., interestRate)
+        };
+
+        // Add the new account to the "accountsCollection" in Firestore
+        await setDoc(userDocRef, newAccount);
+      }
 
       // Log the user in
       // You may want to redirect the user or perform additional actions after sign up
@@ -77,7 +92,42 @@ function Header() {
   };
   const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      // Check if the user already exists in the database
+      const userDocRef = doc(accountsCollectionRef, user.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      if (!userDocSnap.exists()) {
+        // Determine the user's currency based on the browser's language
+        const browserCurrency = new Intl.NumberFormat(undefined, {
+          style: "currency",
+          currency: "EUR", // Default to EUR if unable to determine
+        }).resolvedOptions().currency;
+
+        // Determine the user's locale based on the browser's language
+        const browserLocale = navigator.language;
+
+        // If the user does not exist, add them to the database
+        const newAccount = {
+          owner: user.email,
+          currency: browserCurrency,
+          locale: browserLocale || "en-US", // Default to en-US if unable to determine
+          movements: {
+            movement1: [Timestamp.fromDate(new Date()), 0],
+          },
+          interestRate: 1.2,
+          // Add other properties as needed (e.g., interestRate)
+        };
+
+        // Add the new account to the "accountsCollection" in Firestore
+        await setDoc(userDocRef, newAccount);
+      }
+
+      // Log the user in
+      // You may want to redirect the user or perform additional actions after sign in
+      console.log("User signed in with Google:", user.email);
     } catch (err) {
       console.error(err);
     }

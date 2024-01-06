@@ -82,20 +82,19 @@ nav {
 /* MAIN */
 .app {
   position: relative;
-  max-width: 100rem;
+  max-width: 108rem; /* Increased max-width for a better layout */
   margin: 4rem auto;
   display: grid;
-  grid-template-columns: 4fr 3fr;
-  grid-template-rows: auto repeat(3, 15rem) auto;
+  grid-template-columns: repeat(3, 1fr); /* Changed to three columns */
+  grid-template-rows: auto repeat(5, 15rem) auto;
   gap: 2rem;
 
   /* NOTE This creates the fade in/out anumation */
   /* opacity: 0; */
   transition: all 1s;
 }
-
 .balance {
-  grid-column: 1 / span 2;
+  grid-column: span 3; /* Spanning all three columns */
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -120,7 +119,9 @@ nav {
 
 /* MOVEMENTS */
 .movements {
-  grid-row: 2 / span 3;
+  grid-row: 2 / 6;
+  grid-column: 1 / span 2; /* Spanning two columns */
+
   background-color: #fff;
   border-radius: 1rem;
   overflow: scroll;
@@ -165,7 +166,8 @@ nav {
 
 /* SUMMARY */
 .summary {
-  grid-row: 5 / 6;
+  grid-column: span 2; /* Spanning two columns */
+  grid-row: 6 / 7;
   display: flex;
   align-items: baseline;
   padding: 0 0.3rem;
@@ -219,6 +221,16 @@ nav {
 
 .operation--close {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+
+.operation--deposit-withdraw {
+  background-image: linear-gradient(to top left, #0396ff, #03cbff);
+}
+.operation--transfer,
+.operation--loan,
+.operation--close,
+.operation--deposit-withdraw {
+  grid-column: span 1; /* Spanning one column */
 }
 
 h2 {
@@ -282,16 +294,27 @@ h2 {
 }
 
 .logout-timer {
+  display: inline-block;
   padding: 0 0.3rem;
   margin-top: 1.9rem;
   text-align: right;
   font-size: 1.25rem;
 }
 
+.logout-timer-div {
+  grid-column: 3; /* Set the column to 3 */
+  grid-row: 6; /* Set the row to 6 */
+}
 .timer {
   font-weight: 600;
 }
 
 .btn {
   border: none;
+}
+.checkbox__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
