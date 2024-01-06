@@ -23,6 +23,12 @@ export default function App() {
     };
   }, []);
 
+  const handleTimeout = () => {
+    // Perform logout or other actions when the timer reaches 0
+    console.log("Timeout reached. Logging out...");
+    // Add your logout logic here
+  };
+
   return (
     <>
       <Header />
@@ -41,7 +47,10 @@ export default function App() {
           {/* OPERATION: CLOSE */}
           <Close />
           {/* LOGOUT TIMER */}
-          <LogoutTimer />
+          <div>
+            {/* Your other components */}
+            <LogoutTimer onTimeout={handleTimeout} />
+          </div>
         </main>
       )}
     </>
