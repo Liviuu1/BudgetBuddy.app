@@ -1,33 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { auth, db, googleProvider } from "../config/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { GoogleLogo, SignOut, SignIn, UserPlus } from "@phosphor-icons/react";
 import { Timestamp, collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { useAuth } from "../AuthContext";
 
 function Header() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
-
+  const { user } = useAuth();
   const accountsCollectionRef = collection(db, "accountsCollection");
 
   // console.log(auth?.currentUser?.email);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []); // Run this effect only once during component mount
 
   console.log(user?.email);
 

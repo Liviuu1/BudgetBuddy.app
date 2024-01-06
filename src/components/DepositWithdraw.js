@@ -1,23 +1,39 @@
 import React, { useState } from "react";
-
+import { useAuth } from "../AuthContext";
+import { Timestamp } from "firebase/firestore";
 function DepositWithdraw() {
   const [amount, setAmount] = useState("");
   const [isDeposit, setIsDeposit] = useState(true);
+  const { account } = useAuth();
 
-  const handleOperation = (e) => {
-    e.preventDefault();
-    // Implement your logic for deposit or withdrawal here
-    if (isDeposit) {
-      // Handle deposit
-      console.log("Deposit amount:", amount);
-    } else {
-      // Handle withdrawal
-      console.log("Withdrawal amount:", amount);
-    }
+  if (account) {
+    const newTimestamp = Timestamp.fromDate(new Date());
+    const newMovementKey = `movement${
+      Object.keys(account.movements).length + 1
+    }`;
+    const handleOperation = (e) => {
+      e.preventDefault();
+      // Implement your logic for deposit or withdrawal here
 
-    // Clear the input field after the operation
-    setAmount("");
-  };
+      if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+      }
+
+      if (isDeposit) {
+        account.movements[newMovementKey] = [newTimestamp, amount];
+        console.log("Deposit amount:", amount);
+      } else {
+        account.movements[newMovementKey] = [newTimestamp, -amount];
+        // Handle withdrawal
+        console.log("Withdrawal amount:", amount);
+      }
+
+      // Clear the input field after the operation
+      setAmount("");
+    };
+  }
+
   return (
     <div className="operation operation--deposit-withdraw">
       <h2>{isDeposit ? "Deposit money" : "Withdraw money"}</h2>
