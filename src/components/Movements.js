@@ -34,9 +34,7 @@ function Movements() {
                 ? new Date(movementArray[0].seconds * 1000).toLocaleString()
                 : String(movementArray[0])}
             </div>
-            <div className="movements__value">
-              {movementArray[1]} {movementArray[1] > 0 ? "" : "€"}
-            </div>
+            <div className="movements__value">{movementArray[1]}€</div>
           </div>
         ))}
       </div>

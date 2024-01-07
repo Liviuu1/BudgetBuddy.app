@@ -1,4 +1,6 @@
 import React from "react";
+import { useAuth } from "../AuthContext";
+import { db } from "../config/firebase";
 
 function Balance() {
   return (
