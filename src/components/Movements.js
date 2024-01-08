@@ -1,12 +1,17 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import { Timestamp } from "firebase/firestore";
 import { useAuth } from "../AuthContext";
 
 function Movements() {
   const { account, loading, error } = useAuth();
+  const [movements, setMovements] = useState([]);
 
-  // Import collection function from the correct module
+  useEffect(() => {
+    if (account) {
+      console.log(account.movements);
+      setMovements(Object.entries(account?.movements));
+    }
+  }, [account]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -17,10 +22,9 @@ function Movements() {
   }
 
   if (account) {
-    console.log(account);
     return (
       <div className="movements">
-        {Object.entries(account?.movements).map(([_, movementArray], i) => (
+        {movements.map(([_, movementArray], i) => (
           <div className="movements__row" key={i}>
             <div
               className={`movements__type movements__type--${

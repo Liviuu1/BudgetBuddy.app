@@ -1,3 +1,4 @@
+// Import necessary dependencies from Firebase
 import React, { useState, useEffect } from "react";
 
 function LogoutTimer({ initialTime = 300, onTimeout }) {
@@ -8,7 +9,6 @@ function LogoutTimer({ initialTime = 300, onTimeout }) {
       setTime((prevTime) => {
         if (prevTime === 0) {
           clearInterval(timerInterval);
-          // Call the onTimeout callback when the timer reaches 0
           if (onTimeout) {
             onTimeout();
           }
@@ -19,7 +19,6 @@ function LogoutTimer({ initialTime = 300, onTimeout }) {
       });
     }, 1000);
 
-    // Cleanup the interval when the component is unmounted
     return () => clearInterval(timerInterval);
   }, [onTimeout]);
 
@@ -34,8 +33,8 @@ function LogoutTimer({ initialTime = 300, onTimeout }) {
   return (
     <div className="logout-timer-div">
       <p className="logout-timer">
-        You will be logged out in{" "}
-        <span className="timer">{formatTime(time)}</span>
+        You will be logged out in
+        <span className="timer"> {formatTime(time)}</span>
       </p>
     </div>
   );

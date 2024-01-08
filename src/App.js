@@ -7,7 +7,7 @@ import Transfers from "./components/Transfers";
 import Loan from "./components/Loan";
 import Close from "./components/Close";
 import LogoutTimer from "./components/LogoutTimer";
-import { onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { auth } from "./config/firebase";
 import DepositWithdraw from "./components/DepositWithdraw";
@@ -24,10 +24,15 @@ export default function App() {
     };
   }, []);
 
-  const handleTimeout = () => {
-    // Perform logout or other actions when the timer reaches 0
-    console.log("Timeout reached. Logging out...");
-    // Add your logout logic here
+  const handleTimeout = async () => {
+    // Log out the user when the timer reaches 0
+    const auth = getAuth(); // Get the auth instance
+    try {
+      await signOut(auth); // Sign out the user
+    } catch (error) {
+      console.error("Error during logout:", error);
+      // Handle error as needed
+    }
   };
 
   return (
