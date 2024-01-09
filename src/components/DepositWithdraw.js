@@ -52,6 +52,7 @@ function DepositWithdraw() {
           movements: updatedMovements,
         });
         console.log("Movements updated in Firebase.");
+        // window.location.reload(); TODO
       } catch (error) {
         console.error("Error updating movements in Firebase:", error);
         alert("Error updating movements. Please try again later.");

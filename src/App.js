@@ -7,22 +7,13 @@ import Transfers from "./components/Transfers";
 import Loan from "./components/Loan";
 import Close from "./components/Close";
 import LogoutTimer from "./components/LogoutTimer";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { useState, useEffect } from "react";
-import { auth } from "./config/firebase";
+import { getAuth, signOut } from "firebase/auth";
+
 import DepositWithdraw from "./components/DepositWithdraw";
+import { useAuth } from "./AuthContext";
+import HeroSection from "./components/HeroSection";
 export default function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+  const { user } = useAuth();
 
   const handleTimeout = async () => {
     // Log out the user when the timer reaches 0
@@ -38,7 +29,9 @@ export default function App() {
   return (
     <>
       <Header />
-      {user && (
+      {!user ? (
+        <HeroSection />
+      ) : (
         <main className="app">
           {/* BALANCE */}
           <Balance />

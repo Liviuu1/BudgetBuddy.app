@@ -1,7 +1,7 @@
 // Import necessary dependencies from Firebase
 import React, { useState, useEffect } from "react";
 
-function LogoutTimer({ initialTime = 300, onTimeout }) {
+function LogoutTimer({ initialTime = 600, onTimeout }) {
   const [time, setTime] = useState(initialTime);
 
   useEffect(() => {

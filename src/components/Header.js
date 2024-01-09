@@ -136,7 +136,7 @@ function Header() {
     window.location.reload();
   };
   return (
-    <nav>
+    <nav className="header-nav__">
       <p className="welcome">Log in to get started</p>
       <img
         src="/images/logo.png"
