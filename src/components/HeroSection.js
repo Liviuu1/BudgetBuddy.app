@@ -27,9 +27,9 @@ function HeroSection() {
             <h5 className="features__header">100% digital bank</h5>
 
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-              alias sint quos? Accusantium a fugiat porro reiciendis saepe
-              quibusdam debitis ducimus.
+              Say goodbye to the limitations of physical branches, as our app
+              seamlessly integrates into your daily routine, allowing you to
+              manage your finances with unprecedented ease.
             </p>
           </div>
 
@@ -42,9 +42,10 @@ function HeroSection() {
             <h5 className="features__header">Watch your money grow</h5>
 
             <p>
-              Nesciunt quos autem dolorum voluptates cum dolores dicta fuga
-              inventore ab? Nulla incidunt eius numquam sequi iste pariatur
-              quibusdam!
+              Whether you're depositing your savings or withdrawing for planned
+              expenses, our app ensures that every transaction is not only swift
+              and secure but also contributes to the flourishing of your
+              financial portfolio.
             </p>
           </div>
           <img
@@ -68,9 +69,9 @@ function HeroSection() {
             </div>
             <h5 className="features__header">Free debit card included</h5>
             <p>
-              Quasi, fugit in cumque cupiditate reprehenderit debitis animi enim
-              eveniet consequatur odit quam quos possimus assumenda dicta fuga
-              inventore ab.
+              Our digital platform ensures that your free debit card is not just
+              a physical piece of plastic but a gateway to a world of financial
+              possibilities.
             </p>
           </div>
         </div>
@@ -107,12 +108,18 @@ function HeroSection() {
           </div>
           <div className="operations__content operations__content--1 operations__content--active">
             <div></div>
-            <h5 className="operations__header">Tranfser money to anyone</h5>
+            <h5 className="operations__header">
+              {" "}
+              Instant Transfers, Loans, and Closings
+            </h5>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Experience financial agility like never before with our
+              cutting-edge banking app. Enjoy the convenience of Instant
+              Transfers, ensuring swift and seamless movement of funds within
+              seconds. Explore Instant Loans, providing you with rapid access to
+              funds to meet your urgent financial needs. And when it's time to
+              wrap things up, revel in the efficiency of Instant Closing,
+              streamlining and concluding your financial transactions instantly.
             </p>
           </div>
 
