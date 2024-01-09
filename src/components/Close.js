@@ -70,7 +70,7 @@ function Close() {
           →
         </button>
         <label className="form__label">Confirm Email</label>
-        <label className="form__label">Confirm Password</label>
+        <label className="form__label password_label">Confirm Password</label>
       </form>
     </div>
   );

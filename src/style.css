@@ -282,6 +282,10 @@ h2 {
   text-align: center;
 }
 
+.password_label {
+  letter-spacing: -1px;
+}
+
 .form__btn {
   border: none;
   border-radius: 0.7rem;
