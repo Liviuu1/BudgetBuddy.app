@@ -159,11 +159,21 @@ function HeroSection() {
       </section>
 
       <footer className="footer">
-        <img src="images/icon.png" alt="Logo" className="footer__logo" />
+        <img
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            })
+          }
+          src="images/icon.png"
+          alt="Logo"
+          className="footer__logo"
+        />
         <p className="footer__copyright">
           &copy;
           <a
-            className="footer__link twitter-link"
+            className="footer__link"
             target="_blank"
             rel="noreferrer"
             href="https://github.com/Liviuu1/BudgetBuddy.app"

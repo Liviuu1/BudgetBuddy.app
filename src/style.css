@@ -634,6 +634,7 @@ h4 {
   display: block;
   margin: 0 auto;
   margin-bottom: 5rem;
+  cursor: pointer;
 }
 
 .footer__copyright {
@@ -648,4 +649,20 @@ h4 {
 
 .header-nav__ {
   padding-bottom: 20px;
+}
+
+.upload_profile_picture_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.upload_profile_picture {
+  font-size: 12px;
+}
+.profile-picture__img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 50%;
 }
